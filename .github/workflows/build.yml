@@ -1,0 +1,98 @@
+# Build du launcher Toxitropia pour Windows (.exe) ET macOS (.dmg + .zip), puis publication
+# d'une Release PUBLIQUE téléchargeable par n'importe qui (sans compte GitHub).
+# Déclenche : manuellement (Run workflow) ou en poussant un tag launcher-v* (→ crée la Release).
+name: Build & Release launcher (Windows + macOS)
+
+on:
+  workflow_dispatch: {}
+  push:
+    tags:
+      - 'launcher-v*'
+
+permissions:
+  contents: write # nécessaire pour créer la Release
+
+jobs:
+  build-win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Generate icons (ico + icns)
+        run: npm run icon
+      - name: Build (.exe NSIS)
+        run: npm run build:win
+      - name: Upload build artifacts (Windows)
+        uses: actions/upload-artifact@v4
+        with:
+          name: toxitropia-launcher-win
+          if-no-files-found: error
+          path: |
+            dist/*.exe
+            dist/*.exe.blockmap
+            dist/latest.yml
+
+  build-mac:
+    # macos-14 = runner Apple Silicon (arm64). electron-builder télécharge aussi l'Electron x64.
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Generate icons (ico + icns)
+        run: npm run icon
+      - name: Build (.dmg + .zip)
+        run: npm run build:mac
+        env:
+          # Build NON signé (pas de compte Apple Developer) → 1ᵉʳ lancement : clic droit › Ouvrir.
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+      - name: Upload build artifacts (macOS)
+        uses: actions/upload-artifact@v4
+        with:
+          name: toxitropia-launcher-mac
+          if-no-files-found: error
+          path: |
+            dist/*.dmg
+            dist/*.zip
+            dist/*.blockmap
+            dist/latest-mac.yml
+
+  release:
+    # Un seul job de Release qui rassemble les artefacts Windows + macOS (évite la course entre
+    # deux jobs publiant la même Release). Ne s'exécute que sur un tag launcher-v*.
+    needs: [build-win, build-mac]
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Publish public Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Toxitropia Launcher ${{ github.ref_name }}
+          body: |
+            Launcher **Toxitropia** (NeoForge 1.21.1) — **Windows** & **macOS**.
+
+            ## 📥 Téléchargement
+            - 🪟 **Windows** → `Zarn-Setup-*.exe`
+            - 🍎 **Mac Apple Silicon (M1/M2/M3/M4)** → `*-arm64.dmg`
+            - 🍎 **Mac Intel** → `*-x64.dmg`
+
+            **macOS** : app non signée → au **premier lancement**, **clic droit sur l'app › Ouvrir**
+            (une seule fois), ou `xattr -cr /Applications/Zarn.app`.
+            **Windows** : si SmartScreen prévient, *Informations complémentaires › Exécuter quand même*.
+          files: |
+            artifacts/**/*.exe
+            artifacts/**/*.dmg
+            artifacts/**/*.zip
