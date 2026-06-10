@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- Electron (V8) + la JVM Java ont besoin de JIT et de mémoire exécutable. -->
+  <key>com.apple.security.cs.allow-jit</key>
+  <true/>
+  <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+  <true/>
+  <!-- La JVM lit des variables d'environnement de chargement dynamique (JAVA_HOME, etc.). -->
+  <key>com.apple.security.cs.allow-dyld-environment-variables</key>
+  <true/>
+  <!-- On lance un JRE téléchargé (non signé par nous) comme processus enfant. -->
+  <key>com.apple.security.cs.disable-library-validation</key>
+  <true/>
+  <!-- Téléchargements (mods, JRE, manifest) + ping serveur Minecraft. -->
+  <key>com.apple.security.network.client</key>
+  <true/>
+  <key>com.apple.security.network.server</key>
+  <true/>
+  <!-- Dossier de jeu choisi par l'utilisateur (sélecteur de dossier). -->
+  <key>com.apple.security.files.user-selected.read-write</key>
+  <true/>
+</dict>
+</plist>

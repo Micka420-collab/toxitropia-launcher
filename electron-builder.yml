@@ -1,0 +1,78 @@
+appId: com.toxitropia.launcher
+productName: Zarn
+copyright: Copyright © 2026 Zarn
+
+directories:
+  buildResources: build
+  output: dist
+
+files:
+  - out/**/*
+  - resources/**/*
+  - package.json
+
+asarUnpack:
+  - resources/**
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: ${productName}-Setup-${version}.${ext}
+  icon: build/icon.ico
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Zarn
+  deleteAppDataOnUninstall: false
+
+portable:
+  artifactName: ${productName}-Portable-${version}.${ext}
+
+mac:
+  category: public.app-category.games
+  icon: build/icon.icns
+  target:
+    # .dmg : installeur glisser-déposer. .zip : requis par electron-updater pour l'auto-update mac.
+    - target: dmg
+      arch:
+        - arm64
+        - x64
+    - target: zip
+      arch:
+        - arm64
+        - x64
+  artifactName: ${productName}-${version}-${arch}.${ext}
+  # Hardened Runtime + entitlements : requis pour notariser. L'app reste fonctionnelle non signée
+  # (signature ad-hoc auto). Sans compte Apple Developer, Gatekeeper exige un clic droit › Ouvrir
+  # au 1ᵉʳ lancement (cf. MAC-BUILD.md). Fournir CSC_LINK/CSC_KEY_PASSWORD + APPLE_ID/
+  # APPLE_APP_SPECIFIC_PASSWORD/APPLE_TEAM_ID en env active la signature Developer ID + notarisation.
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  # Lance la JVM Java téléchargée (binaire externe) sans blocage du Hardened Runtime.
+  extendInfo:
+    NSRequiresAquaSystemAppearance: false
+
+dmg:
+  artifactName: ${productName}-${version}-${arch}.${ext}
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications
+
+# Auto-update : artefacts (Setup .exe + latest.yml) servis par le nginx de la VM.
+# Adapter l'URL vers un domaine public en production.
+publish:
+  provider: generic
+  url: http://82.66.55.115:8090/launcher
+  channel: latest

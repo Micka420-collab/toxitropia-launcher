@@ -1,0 +1,355 @@
+{
+  "default": 0,
+  "skins": [
+    {
+      "id": 0,
+      "file": "skin-00.png",
+      "thumb": "thumb-00.png",
+      "name": "Survivant Olive",
+      "theme": "apoc"
+    },
+    {
+      "id": 1,
+      "file": "skin-01.png",
+      "thumb": "thumb-01.png",
+      "name": "Survivant Rouille",
+      "theme": "apoc"
+    },
+    {
+      "id": 2,
+      "file": "skin-02.png",
+      "thumb": "thumb-02.png",
+      "name": "Survivant Cendre",
+      "theme": "apoc"
+    },
+    {
+      "id": 3,
+      "file": "skin-03.png",
+      "thumb": "thumb-03.png",
+      "name": "Survivant Kaki",
+      "theme": "apoc"
+    },
+    {
+      "id": 4,
+      "file": "skin-04.png",
+      "thumb": "thumb-04.png",
+      "name": "Survivant Nuit",
+      "theme": "apoc"
+    },
+    {
+      "id": 5,
+      "file": "skin-05.png",
+      "thumb": "thumb-05.png",
+      "name": "Survivante Brune",
+      "theme": "apoc"
+    },
+    {
+      "id": 6,
+      "file": "skin-06.png",
+      "thumb": "thumb-06.png",
+      "name": "Soldat Forêt",
+      "theme": "apoc"
+    },
+    {
+      "id": 7,
+      "file": "skin-07.png",
+      "thumb": "thumb-07.png",
+      "name": "Soldat Désert",
+      "theme": "apoc"
+    },
+    {
+      "id": 8,
+      "file": "skin-08.png",
+      "thumb": "thumb-08.png",
+      "name": "Soldat Urbain",
+      "theme": "apoc"
+    },
+    {
+      "id": 9,
+      "file": "skin-09.png",
+      "thumb": "thumb-09.png",
+      "name": "Soldat Ombre",
+      "theme": "apoc"
+    },
+    {
+      "id": 10,
+      "file": "skin-10.png",
+      "thumb": "thumb-10.png",
+      "name": "Soldat Hiver",
+      "theme": "apoc"
+    },
+    {
+      "id": 11,
+      "file": "skin-11.png",
+      "thumb": "thumb-11.png",
+      "name": "Hazmat Jaune",
+      "theme": "apoc"
+    },
+    {
+      "id": 12,
+      "file": "skin-12.png",
+      "thumb": "thumb-12.png",
+      "name": "Hazmat Orange",
+      "theme": "apoc"
+    },
+    {
+      "id": 13,
+      "file": "skin-13.png",
+      "thumb": "thumb-13.png",
+      "name": "Hazmat Blanc",
+      "theme": "apoc"
+    },
+    {
+      "id": 14,
+      "file": "skin-14.png",
+      "thumb": "thumb-14.png",
+      "name": "Hazmat Vert",
+      "theme": "apoc"
+    },
+    {
+      "id": 15,
+      "file": "skin-15.png",
+      "thumb": "thumb-15.png",
+      "name": "Pillard Cramoisi",
+      "theme": "apoc"
+    },
+    {
+      "id": 16,
+      "file": "skin-16.png",
+      "thumb": "thumb-16.png",
+      "name": "Pillard Os",
+      "theme": "apoc"
+    },
+    {
+      "id": 17,
+      "file": "skin-17.png",
+      "thumb": "thumb-17.png",
+      "name": "Pillard Terre",
+      "theme": "apoc"
+    },
+    {
+      "id": 18,
+      "file": "skin-18.png",
+      "thumb": "thumb-18.png",
+      "name": "Pillard Forêt",
+      "theme": "apoc"
+    },
+    {
+      "id": 19,
+      "file": "skin-19.png",
+      "thumb": "thumb-19.png",
+      "name": "Pillard Sang",
+      "theme": "apoc"
+    },
+    {
+      "id": 20,
+      "file": "skin-20.png",
+      "thumb": "thumb-20.png",
+      "name": "Charognard Gris",
+      "theme": "apoc"
+    },
+    {
+      "id": 21,
+      "file": "skin-21.png",
+      "thumb": "thumb-21.png",
+      "name": "Charognard Olive",
+      "theme": "apoc"
+    },
+    {
+      "id": 22,
+      "file": "skin-22.png",
+      "thumb": "thumb-22.png",
+      "name": "Charognard Sable",
+      "theme": "apoc"
+    },
+    {
+      "id": 23,
+      "file": "skin-23.png",
+      "thumb": "thumb-23.png",
+      "name": "Charognard Bordeaux",
+      "theme": "apoc"
+    },
+    {
+      "id": 24,
+      "file": "skin-24.png",
+      "thumb": "thumb-24.png",
+      "name": "Charognard Sarcelle",
+      "theme": "apoc"
+    },
+    {
+      "id": 25,
+      "file": "skin-25.png",
+      "thumb": "thumb-25.png",
+      "name": "Infecté Vert",
+      "theme": "apoc"
+    },
+    {
+      "id": 26,
+      "file": "skin-26.png",
+      "thumb": "thumb-26.png",
+      "name": "Infecté Pâle",
+      "theme": "apoc"
+    },
+    {
+      "id": 27,
+      "file": "skin-27.png",
+      "thumb": "thumb-27.png",
+      "name": "Infecté Cendré",
+      "theme": "apoc"
+    },
+    {
+      "id": 28,
+      "file": "skin-28.png",
+      "thumb": "thumb-28.png",
+      "name": "Infecté Putride",
+      "theme": "apoc"
+    },
+    {
+      "id": 29,
+      "file": "skin-29.png",
+      "thumb": "thumb-29.png",
+      "name": "Infecté Spectre",
+      "theme": "apoc"
+    },
+    {
+      "id": 30,
+      "file": "skin-30.png",
+      "thumb": "thumb-30.png",
+      "name": "Médecin Croix",
+      "theme": "apoc"
+    },
+    {
+      "id": 31,
+      "file": "skin-31.png",
+      "thumb": "thumb-31.png",
+      "name": "Médic Terrain",
+      "theme": "apoc"
+    },
+    {
+      "id": 32,
+      "file": "skin-32.png",
+      "thumb": "thumb-32.png",
+      "name": "Mécano Bleu",
+      "theme": "apoc"
+    },
+    {
+      "id": 33,
+      "file": "skin-33.png",
+      "thumb": "thumb-33.png",
+      "name": "Mécano Gris",
+      "theme": "apoc"
+    },
+    {
+      "id": 34,
+      "file": "skin-34.png",
+      "thumb": "thumb-34.png",
+      "name": "Mécano Terre",
+      "theme": "apoc"
+    },
+    {
+      "id": 35,
+      "file": "skin-35.png",
+      "thumb": "thumb-35.png",
+      "name": "Nomade Sable",
+      "theme": "apoc"
+    },
+    {
+      "id": 36,
+      "file": "skin-36.png",
+      "thumb": "thumb-36.png",
+      "name": "Nomade Rouille",
+      "theme": "apoc"
+    },
+    {
+      "id": 37,
+      "file": "skin-37.png",
+      "thumb": "thumb-37.png",
+      "name": "Nomade Ardoise",
+      "theme": "apoc"
+    },
+    {
+      "id": 38,
+      "file": "skin-38.png",
+      "thumb": "thumb-38.png",
+      "name": "Nomade Forêt",
+      "theme": "apoc"
+    },
+    {
+      "id": 39,
+      "file": "skin-39.png",
+      "thumb": "thumb-39.png",
+      "name": "Masque Militaire",
+      "theme": "apoc"
+    },
+    {
+      "id": 40,
+      "file": "skin-40.png",
+      "thumb": "thumb-40.png",
+      "name": "Masque Noir",
+      "theme": "apoc"
+    },
+    {
+      "id": 41,
+      "file": "skin-41.png",
+      "thumb": "thumb-41.png",
+      "name": "Masque Rouille",
+      "theme": "apoc"
+    },
+    {
+      "id": 42,
+      "file": "skin-42.png",
+      "thumb": "thumb-42.png",
+      "name": "Sweat Rouge",
+      "theme": "classic"
+    },
+    {
+      "id": 43,
+      "file": "skin-43.png",
+      "thumb": "thumb-43.png",
+      "name": "Sweat Bleu",
+      "theme": "classic"
+    },
+    {
+      "id": 44,
+      "file": "skin-44.png",
+      "thumb": "thumb-44.png",
+      "name": "Sweat Vert",
+      "theme": "classic"
+    },
+    {
+      "id": 45,
+      "file": "skin-45.png",
+      "thumb": "thumb-45.png",
+      "name": "Sweat Violet",
+      "theme": "classic"
+    },
+    {
+      "id": 46,
+      "file": "skin-46.png",
+      "thumb": "thumb-46.png",
+      "name": "Sweat Cyan",
+      "theme": "classic"
+    },
+    {
+      "id": 47,
+      "file": "skin-47.png",
+      "thumb": "thumb-47.png",
+      "name": "Sweat Rose",
+      "theme": "classic"
+    },
+    {
+      "id": 48,
+      "file": "skin-48.png",
+      "thumb": "thumb-48.png",
+      "name": "Tenue Or",
+      "theme": "classic"
+    },
+    {
+      "id": 49,
+      "file": "skin-49.png",
+      "thumb": "thumb-49.png",
+      "name": "Monochrome",
+      "theme": "classic"
+    }
+  ]
+}

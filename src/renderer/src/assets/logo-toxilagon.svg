@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520" fill="none">
+  <defs>
+    <radialGradient id="tlLagon" cx="50%" cy="62%" r="55%">
+      <stop offset="0%" stop-color="#5BF2A0"/>
+      <stop offset="42%" stop-color="#3DDC84"/>
+      <stop offset="78%" stop-color="#1C8F73"/>
+      <stop offset="100%" stop-color="#0A201A"/>
+    </radialGradient>
+    <linearGradient id="tlSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A1410"/>
+      <stop offset="100%" stop-color="#103326"/>
+    </linearGradient>
+    <linearGradient id="tlWord" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5BF2A0"/>
+      <stop offset="100%" stop-color="#23C9B8"/>
+    </linearGradient>
+    <linearGradient id="tlRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9A7233"/>
+      <stop offset="50%" stop-color="#6E4F22"/>
+      <stop offset="100%" stop-color="#3A2A12"/>
+    </linearGradient>
+    <filter id="tlGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="tlDisc"><circle cx="210" cy="200" r="158"/></clipPath>
+  </defs>
+
+  <!-- Badge : anneau métal rouillé + ticks -->
+  <circle cx="210" cy="200" r="190" fill="#0A1410"/>
+  <circle cx="210" cy="200" r="186" fill="none" stroke="url(#tlRing)" stroke-width="14"/>
+  <circle cx="210" cy="200" r="174" fill="none" stroke="#0A1410" stroke-width="3"/>
+  <g stroke="#C9A24B" stroke-width="3" opacity="0.65">
+    <circle cx="210" cy="200" r="186" fill="none" stroke-dasharray="3 23" stroke-dashoffset="1"/>
+  </g>
+
+  <!-- Disque : ciel sombre (haut) + lagon toxique lumineux (bas) -->
+  <g clip-path="url(#tlDisc)">
+    <rect x="52" y="42" width="316" height="316" fill="url(#tlSky)"/>
+    <rect x="52" y="200" width="316" height="158" fill="url(#tlLagon)"/>
+    <!-- halo lumineux du lagon -->
+    <ellipse cx="210" cy="232" rx="120" ry="70" fill="#3DDC84" opacity="0.45" filter="url(#tlGlow)"/>
+    <!-- ligne d'eau -->
+    <rect x="52" y="198" width="316" height="3" fill="#9BFFD6" opacity="0.5"/>
+    <!-- reflets / stries d'eau -->
+    <g stroke="#CFFCEA" stroke-width="2" opacity="0.25">
+      <line x1="120" y1="250" x2="180" y2="250"/>
+      <line x1="240" y1="285" x2="300" y2="285"/>
+      <line x1="150" y1="315" x2="210" y2="315"/>
+    </g>
+
+    <!-- Palmier mort (silhouette) traversant la surface, à droite -->
+    <g fill="#08120E" opacity="0.92">
+      <path d="M300 250 C 296 200, 292 150, 286 96 C 290 150, 300 200, 308 250 Z"/>
+      <path d="M286 96 C 250 70, 214 72, 196 92 C 226 84, 258 90, 286 104 Z"/>
+      <path d="M286 96 C 322 70, 352 78, 366 102 C 338 88, 312 90, 286 104 Z"/>
+      <path d="M286 98 C 268 64, 244 50, 220 50 C 250 64, 272 84, 286 110 Z"/>
+      <path d="M286 98 C 304 62, 330 50, 354 52 C 324 64, 302 84, 286 110 Z"/>
+    </g>
+
+    <!-- Trèfle radioactif (hero) sur le lagon -->
+    <g transform="translate(210 214)" filter="url(#tlGlow)">
+      <g fill="#07140F">
+        <g>
+          <path d="M0 -14 A14 14 0 0 1 12.1 -7 L70 -40 A82 82 0 0 0 0 -82 Z"/>
+          <path d="M12.1 7 A14 14 0 0 1 0 14 L0 82 A82 82 0 0 0 71 41 Z"/>
+          <path d="M-12.1 -7 A14 14 0 0 1 -12.1 7 L-71 41 A82 82 0 0 1 -70 -40 Z"/>
+        </g>
+        <circle cx="0" cy="0" r="15"/>
+      </g>
+      <!-- liseré toxique sur le trèfle -->
+      <g fill="none" stroke="#5BF2A0" stroke-width="2" opacity="0.5">
+        <circle cx="0" cy="0" r="16"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- vignette -->
+  <circle cx="210" cy="200" r="158" fill="none" stroke="#000000" stroke-width="26" opacity="0.18" clip-path="url(#tlDisc)"/>
+
+  <!-- Wordmark -->
+  <g font-family="Oswald, 'Arial Narrow', sans-serif" font-weight="700" text-anchor="middle" letter-spacing="8">
+    <text x="214" y="458" font-size="94" filter="url(#tlGlow)">
+      <tspan fill="#EAF6EE">ZAR</tspan><tspan fill="url(#tlWord)">N</tspan>
+    </text>
+  </g>
+  <rect x="126" y="472" width="168" height="3" fill="#FF7A18" opacity="0.85"/>
+  <text x="210" y="496" font-family="Oswald, 'Arial Narrow', sans-serif" font-size="15" letter-spacing="7" text-anchor="middle" fill="#7FA18C">LE DERNIER ARCHIPEL</text>
+</svg>

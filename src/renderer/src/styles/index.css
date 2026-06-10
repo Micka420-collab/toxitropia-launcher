@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Zarn — Apocalypse Tropicale (alignées sur manifest.branding) */
+  --accent: #3ddc84; /* vert toxique Zarn (principal) = branding.primaryColor */
+  --accent-2: #ff7a18; /* braise Zarn (CTA) = branding.accentColor */
+  --toxic: #7fff00; /* vert toxique / infection */
+  --ember: #ff7a18; /* braise / feu */
+  --rust: #9c5a3c; /* métal oxydé / épave */
+  --hazard: #e8b417; /* jaune danger */
+  --danger: #c2342a; /* rouge alerte */
+  --sand: #e8d8a0; /* sable */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #07080a; /* charbon profond */
+  color: #d6dbd0; /* cendre claire */
+  overflow: hidden;
+  user-select: none;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Titres : police d'affichage condensée « militaire / techno » (apocalyptique premium). */
+h1,
+h2,
+h3 {
+  font-family: 'Oswald', 'Inter', system-ui, sans-serif;
+  letter-spacing: 0.012em;
+}
+
+input,
+textarea {
+  user-select: text;
+}
+
+.drag {
+  -webkit-app-region: drag;
+}
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.13);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+  background-clip: content-box;
+}
+
+@layer components {
+  .accent-bg {
+    background-color: var(--accent);
+  }
+  .accent-text {
+    color: var(--accent);
+  }
+  .accent-border {
+    border-color: var(--accent);
+  }
+  .ember-text {
+    color: var(--ember);
+  }
+  .glass {
+    background: rgba(12, 14, 11, 0.62);
+    backdrop-filter: blur(16px) saturate(1.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  /* Panneau verre dépoli premium (bord teinté accent, ombre douce). */
+  .card {
+    @apply relative overflow-hidden rounded-xl border bg-surface-850/55 backdrop-blur-xl;
+    border-color: color-mix(in srgb, var(--accent) 13%, rgba(255, 255, 255, 0.07));
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+      0 18px 44px -24px rgba(0, 0, 0, 0.9);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .card:hover {
+    border-color: color-mix(in srgb, var(--accent) 30%, rgba(255, 255, 255, 0.08));
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+      0 22px 50px -22px rgba(0, 0, 0, 0.92),
+      0 0 28px -14px var(--rad-glow);
+  }
+  .input {
+    @apply w-full rounded-lg border border-white/10 bg-black/30 px-3.5 py-2.5 text-sm text-slate-100 outline-none transition focus:border-[var(--accent)] focus:ring-2 focus:ring-[color:color-mix(in_srgb,var(--accent)_30%,transparent)] placeholder:text-slate-500;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-medium uppercase tracking-wider text-slate-400;
+  }
+  /* Emplacement creux façon barre d'inventaire / hotbar. */
+  .mc-slot {
+    background: rgba(0, 0, 0, 0.28);
+    box-shadow:
+      inset 2px 2px 0 0 rgba(0, 0, 0, 0.5),
+      inset -2px -2px 0 0 rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* ─── Textures de bloc (overlay pixel net, sans toucher aux images enfants) ─── */
+.tex-wood,
+.tex-stone,
+.tex-dirt,
+.tex-crack,
+.tex-moss,
+.tex-rust {
+  position: relative;
+}
+.tex-wood::before,
+.tex-stone::before,
+.tex-dirt::before,
+.tex-crack::before,
+.tex-moss::before,
+.tex-rust::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: repeat;
+  border-radius: inherit;
+  image-rendering: pixelated;
+}
+.tex-wood::before {
+  background-image: url('../assets/blocks/oak_planks.png');
+  background-size: 56px 56px;
+  opacity: 0.13;
+}
+.tex-stone::before {
+  background-image: url('../assets/blocks/cobblestone.png');
+  background-size: 52px 52px;
+  opacity: 0.1;
+}
+.tex-dirt::before {
+  background-image: url('../assets/blocks/dirt.png');
+  background-size: 48px 48px;
+  opacity: 0.14;
+}
+.tex-crack::before {
+  background-image: url('../assets/blocks/cracked_stone_bricks.png');
+  background-size: 48px 48px;
+  opacity: 0.16;
+}
+.tex-moss::before {
+  background-image: url('../assets/blocks/mossy_cobblestone.png');
+  background-size: 52px 52px;
+  opacity: 0.14;
+}
+.tex-rust::before {
+  background-image: url('../assets/blocks/netherrack.png');
+  background-size: 50px 50px;
+  opacity: 0.16;
+}
+
+/* Sheen lumineux subtil en haut des panneaux (verre premium) — fini la pierre fissurée. */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 20%);
+}
+
+/* Textures de bloc rendues très discrètes (fini le carrelage voyant). */
+.tex-wood::before,
+.tex-stone::before,
+.tex-dirt::before,
+.tex-crack::before,
+.tex-moss::before,
+.tex-rust::before {
+  opacity: 0.04;
+}
+
+/* ─── Barre d'XP : remplissage vert + encoches noires ─── */
+.xp-bar {
+  position: relative;
+}
+.xp-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 9px,
+    rgba(0, 0, 0, 0.4) 9px 10px
+  );
+}
+
+.accent-gradient {
+  background-image: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+
+.text-accent-gradient {
+  background-image: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 2.4s linear infinite;
+}
+
+/* ─── Égaliseur radio : barres qui dansent quand une station joue ─── */
+@keyframes eq-bounce {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.eq-bar {
+  width: 3px;
+  height: 16px;
+  border-radius: 2px;
+  background-color: currentColor;
+  transform-origin: bottom center;
+  animation: eq-bounce 0.9s ease-in-out infinite;
+}
+
+/* ─── Bande de danger industrielle (jaune/noir en diagonale) ─── */
+.hazard-stripe {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--hazard) 0 9px,
+    #14130a 9px 18px
+  );
+  background-size: 25.46px 25.46px;
+}
+
+/* ─── Voile « crasse » : vignette + scanlines sur toute l'app ─── */
+.grit-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+  background-image:
+    radial-gradient(125% 125% at 50% 38%, transparent 52%, rgba(0, 0, 0, 0.6) 100%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.05) 0 1px, transparent 1px 3px);
+}
+
+/* ════════════ APOCALYPSE TROPICALE — couche d'ambiance poussée (100% additive, opt-in) ════════════ */
+:root {
+  --acid: #9dff2e; /* vert acide radioactif */
+  --rad-glow: rgba(157, 255, 46, 0.5);
+  --ash: #6b6f63; /* cendre */
+  --blood: #7a0c12; /* sang séché */
+  --crt-line: rgba(0, 0, 0, 0.22);
+}
+
+/* Texte néon acide + halo (opt-in) — n'altère AUCUN composant existant */
+.neon-text {
+  color: var(--acid);
+  text-shadow: 0 0 4px var(--rad-glow), 0 0 12px var(--rad-glow);
+}
+.glow-acid {
+  box-shadow: 0 0 6px var(--rad-glow), 0 0 18px var(--rad-glow);
+}
+.stencil {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 800;
+}
+
+/* Vignette radioactive (bords vert toxique qui pulse) */
+.rad-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(130% 120% at 50% 50%, transparent 58%, rgba(12, 28, 6, 0.55) 100%),
+    radial-gradient(80% 60% at 50% 108%, rgba(127, 255, 0, 0.1), transparent 60%);
+  animation: rad-pulse 7s ease-in-out infinite;
+}
+/* Scanlines CRT + scintillement */
+.crt-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(0deg, var(--crt-line) 0 1px, transparent 1px 3px);
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  animation: crt-flicker 5.5s steps(60) infinite;
+}
+/* Bruit de film (fractalNoise SVG en data-uri) */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+}
+@keyframes rad-pulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+@keyframes crt-flicker {
+  0%, 96%, 100% { opacity: 0.5; }
+  97% { opacity: 0.38; }
+  98% { opacity: 0.55; }
+  99% { opacity: 0.42; }
+}
+@keyframes ash-fall {
+  0% { transform: translateY(-6vh) translateX(0); opacity: 0; }
+  10% { opacity: var(--op); }
+  90% { opacity: var(--op); }
+  100% { transform: translateY(108vh) translateX(var(--drift)); opacity: 0; }
+}
+@keyframes spore-drift {
+  0% { transform: translate3d(0, 6vh, 0); opacity: 0; }
+  15% { opacity: var(--op); }
+  85% { opacity: var(--op); }
+  100% { transform: translate3d(var(--drift), -94vh, 0); opacity: 0; }
+}
+/* Fond global (ApocBackground) : ken-burns lent de la map + dérive du smog */
+@keyframes apoc-kenburns {
+  0% { transform: scale(1.06) translate3d(0, 0, 0); }
+  50% { transform: scale(1.15) translate3d(-2.5%, -1.6%, 0); }
+  100% { transform: scale(1.06) translate3d(0, 0, 0); }
+}
+@keyframes apoc-smog {
+  0% { transform: translateX(-7%); }
+  100% { transform: translateX(7%); }
+}
+/* Coque apocalyptique (opt-in) : liseré néon toxique animé en haut d'un panneau */
+.apoc-edge {
+  position: relative;
+}
+.apoc-edge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 0 rgba(157, 255, 46, 0.18), inset 0 0 22px -8px var(--rad-glow);
+}

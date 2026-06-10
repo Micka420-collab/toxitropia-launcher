@@ -1,0 +1,14 @@
+node_modules/
+out/
+dist/
+*.log
+.DS_Store
+.vite/
+.idea/
+.vscode/
+*.local
+
+# Certificats de signature de code (ne jamais committer)
+build/certs/
+*.pfx
+*.p12
