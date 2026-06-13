@@ -3,8 +3,8 @@
 // Aucun accès privilégié : c'est exactement ce que fait un client en survolant le serveur.
 import net from 'node:net'
 
-const HOST = process.argv[2] || '82.66.55.115'
-const PORT = parseInt(process.argv[3] || '25600', 10)
+const HOST = process.argv[2] || '82.67.63.61'
+const PORT = parseInt(process.argv[3] || '25569', 10)
 
 function writeVarInt(n) {
   const bytes = []

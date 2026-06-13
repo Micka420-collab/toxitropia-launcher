@@ -74,5 +74,5 @@ dmg:
 # Adapter l'URL vers un domaine public en production.
 publish:
   provider: generic
-  url: http://82.66.55.115:8090/launcher
+  url: http://82.67.63.61:8090/launcher
   channel: latest

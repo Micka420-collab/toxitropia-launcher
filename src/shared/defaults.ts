@@ -5,7 +5,7 @@ export const SCHEMA_VERSION = 1
 export const DEFAULT_MANIFEST: LauncherManifest = {
   schemaVersion: SCHEMA_VERSION,
   updatedAt: new Date(0).toISOString(),
-  server: { name: 'Zarn', ip: '82.66.55.115', port: 25600 },
+  server: { name: 'Zarn', ip: '82.67.63.61', port: 25569 },
   // Plan A — NeoForge 1.21.1 (Java 21). loaderVersion ÉPINGLÉE volontairement :
   // client et serveur DOIVENT tourner sur le même build NeoForge, sinon kick au handshake.
   // Vérifier le dernier 21.1.x sur https://maven.neoforged.net/releases/net/neoforged/neoforge/
@@ -171,13 +171,13 @@ export const DEFAULT_MANIFEST: LauncherManifest = {
   },
   {
     "name": "ftb-library-neoforge-2101.1.31.jar",
-    "url": "http://82.66.55.115:8090/ftb-library-neoforge-2101.1.31.jar",
+    "url": "http://82.67.63.61:8090/ftb-library-neoforge-2101.1.31.jar",
     "sha1": "686d4e784c28c14f7760cc22b2de6a8573b56b74",
     "size": 1411181
   },
   {
     "name": "ftb-essentials-neoforge-2101.1.9.jar",
-    "url": "http://82.66.55.115:8090/ftb-essentials-neoforge-2101.1.9.jar",
+    "url": "http://82.67.63.61:8090/ftb-essentials-neoforge-2101.1.9.jar",
     "sha1": "7d6f274b38d767215549ec066246390c49ac7ad8",
     "size": 209459
   },
@@ -413,19 +413,19 @@ export const DEFAULT_MANIFEST: LauncherManifest = {
   },
   {
     "name": "Immersive Vehicles-1.21.1-24.0.0.jar",
-    "url": "http://82.66.55.115:8090/mods/Immersive%20Vehicles-1.21.1-24.0.0.jar",
+    "url": "http://82.67.63.61:8090/mods/Immersive%20Vehicles-1.21.1-24.0.0.jar",
     "sha1": "7050a332f18d390610029de28c13fb6139786607",
     "size": 6131756
   },
   {
     "name": "MTS Official Pack-1.21.1-V29.jar",
-    "url": "http://82.66.55.115:8090/mods/MTS%20Official%20Pack-1.21.1-V29.jar",
+    "url": "http://82.67.63.61:8090/mods/MTS%20Official%20Pack-1.21.1-V29.jar",
     "sha1": "7e7cc4389379cdb7addc1bb29ff1700099cee5bb",
     "size": 70999728
   },
   {
     "name": "lostcities-1.21-8.3.10.jar",
-    "url": "http://82.66.55.115:8090/mods/lostcities-1.21-8.3.10.jar",
+    "url": "http://82.67.63.61:8090/mods/lostcities-1.21-8.3.10.jar",
     "sha1": "92244687959aa4170faeb9ffedd5a8952db76617",
     "size": 1239484
   },
@@ -523,7 +523,7 @@ export const DEFAULT_MANIFEST: LauncherManifest = {
 
 export function defaultSettings(gameDir: string): LauncherSettings {
   return {
-    manifestUrl: 'http://82.66.55.115:8090/distribution.json',
+    manifestUrl: 'http://82.67.63.61:8090/distribution.json',
     gameDir,
     javaPath: '',
     ramMb: 4096,

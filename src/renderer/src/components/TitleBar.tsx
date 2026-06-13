@@ -1,11 +1,13 @@
 import type { ReactNode } from 'react'
 import { Minus, Square, X } from 'lucide-react'
 import { useStore } from '@/lib/store'
+import bundledLogo from '@/assets/logo.png'
 
 export function TitleBar(): JSX.Element {
   const app = useStore((s) => s.app)
   const appName = app?.manifest?.branding.appName ?? 'Zarn'
-  const logo = app?.manifest?.branding.logoUrl
+  // Logo en haut à gauche : celui du manifeste s'il existe, sinon le logo embarqué.
+  const logo = app?.manifest?.branding.logoUrl || bundledLogo
   // macOS : on laisse les « feux tricolores » natifs (en haut à gauche) → on cale le logo
   // vers la droite et on masque nos boutons custom (sinon doublon avec les natifs).
   const isMac = (window.api?.platform ?? '') === 'darwin'
@@ -20,7 +22,7 @@ export function TitleBar(): JSX.Element {
       <span className="hazard-stripe pointer-events-none absolute inset-x-0 bottom-0 h-[3px] opacity-70" />
       <div className="flex items-center gap-2.5">
         {logo ? (
-          <img src={logo} alt="" className="h-5 w-5 rounded" />
+          <img src={logo} alt="" className="h-6 w-6 rounded object-contain" />
         ) : (
           <span className="grid h-5 w-5 place-items-center rounded accent-gradient text-[10px] font-black text-white">
             {appName.slice(0, 1).toUpperCase()}

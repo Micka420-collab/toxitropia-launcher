@@ -1,6 +1,6 @@
 {
   "name": "toxitropia-launcher",
-  "version": "1.5.15",
+  "version": "1.5.20",
   "description": "Zarn — Apocalypse Tropicale : launcher NeoForge 1.21.1",
   "main": "./out/main/index.js",
   "author": "Zarn",

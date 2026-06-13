@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Volume2, VolumeX } from 'lucide-react'
 import { useStore } from '@/lib/store'
 import bgUrl from '@/assets/bg-apocalypse.png'
-import logoUrl from '@/assets/logo-toxilagon.svg'
+import logoUrl from '@/assets/logo.png'
 
 // Écran de chargement « style Garry's Mod » : overlay plein écran pendant le lancement,
 // art apocalyptique + scanlines CRT, barre de progression par phase, tips qui défilent,
