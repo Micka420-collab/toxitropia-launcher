@@ -417,3 +417,8 @@ button:focus-visible { outline: 2px solid #36dfff; outline-offset: 4px; }
 .genesis-brand span { margin: 0; }
 .genesis-sidebar { overflow-y: auto; }
 .genesis-sidebar nav { margin-bottom: 20px; }
+
+.genesis-credit { margin: 14px 0 2px; text-align: center; font-size: 10px; color: #7d91aa; letter-spacing: .3px; flex-shrink: 0; }
+.genesis-sidebar { overflow: hidden; }
+.genesis-brand, .genesis-nav-label, .genesis-sidebar > .mt-auto { flex-shrink: 0; }
+.genesis-sidebar nav { min-height: 0; overflow-y: auto; flex: 1; }

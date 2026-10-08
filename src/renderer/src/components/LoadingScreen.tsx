@@ -25,7 +25,7 @@ const PHASE_LABEL: Record<string, string> = {
   running: 'Ton aventure commence…'
 }
 
-const TIPS = ['Personnalise ton personnage depuis la page Skins.', 'Retrouve tes captures dans la Galerie.', 'Les paramètres te permettent d’ajuster la mémoire du jeu.', 'MCGenesis : joue avec les IA créées par Micka et bâtissez votre monde ensemble.']
+const TIPS = ['Personnalise ton personnage depuis la page Skins.', 'Retrouve tes captures dans la Galerie.', 'Les paramètres te permettent d’ajuster la mémoire du jeu.', 'MCGenesis : rencontre des joueurs IA et bâtissez votre monde ensemble.']
 
 /**
  * Musique d'ambiance « Metro 2033 » entièrement SYNTHÉTISÉE en Web Audio (aucun fichier, 0 copyright) :

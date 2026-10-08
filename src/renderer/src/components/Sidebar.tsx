@@ -198,6 +198,7 @@ export function Sidebar(): JSX.Element {
           </button>
         )}
       </div>
+      <p className="genesis-credit">Créé par Micka</p>
     </aside>
   )
 }
