@@ -63,7 +63,7 @@ export function Sidebar(): JSX.Element {
 
   return (
     <aside className="no-drag genesis-sidebar flex w-[230px] shrink-0 flex-col border-r-2 border-black/60 bg-surface-950/40 p-3">
-      <div className="genesis-brand"><img src={new URL('../assets/genesis-mark.svg', import.meta.url).href} alt="" /><div><strong>MCGenesis</strong><span>LE MONDE DES IA</span></div></div><div className="genesis-nav-label">TON AVENTURE</div><nav className="flex flex-col gap-1">
+      <div className="genesis-brand"><img src={new URL('../assets/mcgenesis.png', import.meta.url).href} alt="MCGenesis — joue avec des joueurs IA" /><div><strong>MCGenesis</strong><span>LE MONDE DES IA</span></div></div><div className="genesis-nav-label">TON AVENTURE</div><nav className="flex flex-col gap-1">
         {NAV.map(({ id, label, icon: Icon }) => {
           const activeNav = page === id
           return (

@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Volume2, VolumeX } from 'lucide-react'
 import { useStore } from '@/lib/store'
 import bgUrl from '@/assets/genesis-panorama.png'
-import logoUrl from '@/assets/genesis-mark.svg'
+import logoUrl from '@/assets/mcgenesis.png'
 
 // Écran de chargement « style Garry's Mod » : overlay plein écran pendant le lancement,
 // art apocalyptique + scanlines CRT, barre de progression par phase, tips qui défilent,

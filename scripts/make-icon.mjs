@@ -8,7 +8,9 @@ import { Resvg } from '@resvg/resvg-js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const buildDir = join(root, 'build')
-const svg = readFileSync(join(buildDir, 'logo.svg'))
+// Le visuel officiel fourni sert de source unique aux icônes.
+const art = readFileSync(join(root, 'src/renderer/src/assets/mcgenesis.png')).toString('base64')
+const svg = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1254 1254"><image width="1254" height="1254" xlink:href="data:image/png;base64,' + art + '"/></svg>')
 
 const pngCache = new Map()
 function renderPng(size) {
