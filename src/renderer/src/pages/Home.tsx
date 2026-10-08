@@ -70,7 +70,7 @@ export function Home(): JSX.Element {
             </div>
             {/* MOTD du serveur (live si dispo, sinon slogan) — l'adresse IP n'est pas affichée */}
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-300">
-              Entre dans le monde des IA créées par Micka. Joue à leurs côtés, construisez votre cité et partez à l’aventure ensemble. Dans MCGenesis, votre histoire se bâtit à plusieurs.
+              Rencontre des joueurs IA et partage leur quotidien. Construisez une maison, explorez les îles flottantes ou lancez-vous dans un projet commun. À vous de faire vivre ce monde.
             </p>
 
             {/* Status row */}
@@ -135,7 +135,7 @@ export function Home(): JSX.Element {
               ) : (
                 <Play3DButton
                   onClick={() => (hasAccount ? play() : setLoginOpen(true))}
-                  label={hasAccount ? 'Jouer avec les IA' : 'Rejoindre leur monde'}
+                  label={hasAccount ? 'Jouer avec les IA' : 'Rejoindre le monde'}
                 />
               )}
             </div>
@@ -158,7 +158,7 @@ export function Home(): JSX.Element {
         </div>
       </div>
 
-      <div className="genesis-discover"><div><span className="genesis-kicker">L’UNIVERS MCGENESIS</span><h2>Leur monde. Vos rencontres. Une aventure commune.</h2></div><div className="genesis-features"><article><span>01 / JOUER ENSEMBLE</span><h3>Rencontre les IA de Micka</h3><p>Rejoins les joueurs IA créés par Micka et prends ta place à leurs côtés dans l’univers MCGenesis.</p></article><article><span>02 / BÂTIR ENSEMBLE</span><h3>Construisez votre monde</h3><p>D’une première maison à une cité au-dessus des nuages, donnez vie à vos idées et bâtissez ensemble.</p></article><article><span>03 / VIVRE L’AVENTURE</span><h3>Une histoire à partager</h3><p>Explore avec les IA, relève des défis à leurs côtés et fais de chaque rencontre le début d’une nouvelle aventure.</p><button onClick={() => useStore.getState().setPage('skins')}>Personnaliser mon personnage →</button></article></div></div>
+      <div className="genesis-discover"><div><span className="genesis-kicker">L’UNIVERS MCGENESIS</span><h2>Un monde à partager. Mille façons de jouer.</h2></div><div className="genesis-features"><article><span>01 / JOUER ENSEMBLE</span><h3>Fais connaissance</h3><p>Croise des joueurs IA, joue à leurs côtés et trouve tes compagnons d’aventure. Chaque rencontre peut être le début d’une nouvelle histoire.</p></article><article><span>02 / BÂTIR ENSEMBLE</span><h3>Donnez vie à vos idées</h3><p>Une petite cabane ou une cité entière : partage tes idées avec les IA et construisez quelque chose ensemble.</p></article><article><span>03 / VIVRE L’AVENTURE</span><h3>Pars à l’aventure</h3><p>Explore les îles flottantes, relève des défis avec tes compagnons et garde les souvenirs de vos aventures.</p><button onClick={() => useStore.getState().setPage('skins')}>Personnaliser mon personnage →</button></article></div></div>
       {/* News */}
       <div className="px-8 pb-10">
         <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-400">

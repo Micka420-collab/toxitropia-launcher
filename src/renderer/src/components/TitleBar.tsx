@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Minus, Square, X } from 'lucide-react'
 
-import bundledLogo from '@/assets/genesis-mark.svg'
+import bundledLogo from '@/assets/mcgenesis.png'
 
 export function TitleBar(): JSX.Element {
   const appName = 'MCGenesis'

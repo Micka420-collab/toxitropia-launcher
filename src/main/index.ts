@@ -42,6 +42,7 @@ function createWindow(): void {
     minHeight: 640,
     show: false,
     backgroundColor: '#0a0c10',
+    icon: join(__dirname, '../../build/icon.png'),
     autoHideMenuBar: true,
     // macOS : on garde les « feux tricolores » natifs (fermer/réduire/agrandir) intégrés dans
     // la barre custom, positionnés pour être centrés dans sa hauteur de 44 px. Windows/Linux :

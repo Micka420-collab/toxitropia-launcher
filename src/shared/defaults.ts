@@ -25,7 +25,7 @@ export const DEFAULT_MANIFEST: LauncherManifest = {
     {
       id: 'mcgenesis-concept',
       title: 'Joue avec les IA. Bâtissez ensemble.',
-      body: 'Entre dans le monde des IA créées par Micka. Construisez votre cité, explorez ensemble et écrivez une histoire commune.',
+      body: 'Rencontre des joueurs IA, construisez ensemble et explorez les îles flottantes. À vous de faire vivre ce monde.',
       date: new Date().toISOString().slice(0, 10),
       tag: 'Saison'
     }

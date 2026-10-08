@@ -10,6 +10,7 @@ files:
   - out/**/*
   - resources/**/*
   - package.json
+  - build/icon.png
 
 asarUnpack:
   - resources/**
