@@ -4,7 +4,7 @@ import { readFile } from 'fs/promises'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { initStore, getState } from './store'
 import { registerIpc } from './ipc'
-import { initUpdater } from './services/updater'
+
 
 let mainWindow: BrowserWindow | null = null
 
@@ -83,8 +83,7 @@ app.whenReady().then(async () => {
   registerIpc(() => mainWindow)
   createWindow()
 
-  // Auto-update du launcher (production uniquement ; feed = electron-builder publish).
-  if (!is.dev) initUpdater(() => mainWindow)
+  // Canal MCGenesis à configurer avant d'activer les mises à jour automatiques.
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()

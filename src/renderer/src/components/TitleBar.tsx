@@ -1,13 +1,12 @@
 import type { ReactNode } from 'react'
 import { Minus, Square, X } from 'lucide-react'
-import { useStore } from '@/lib/store'
-import bundledLogo from '@/assets/logo.png'
+
+import bundledLogo from '@/assets/genesis-mark.svg'
 
 export function TitleBar(): JSX.Element {
-  const app = useStore((s) => s.app)
-  const appName = app?.manifest?.branding.appName ?? 'Zarn'
+  const appName = 'MCGenesis'
   // Logo en haut à gauche : celui du manifeste s'il existe, sinon le logo embarqué.
-  const logo = app?.manifest?.branding.logoUrl || bundledLogo
+  const logo = bundledLogo
   // macOS : on laisse les « feux tricolores » natifs (en haut à gauche) → on cale le logo
   // vers la droite et on masque nos boutons custom (sinon doublon avec les natifs).
   const isMac = (window.api?.platform ?? '') === 'darwin'
@@ -15,11 +14,11 @@ export function TitleBar(): JSX.Element {
   return (
     <header
       className={
-        'drag tex-stone relative z-20 flex h-11 shrink-0 items-center justify-between border-b border-black/70 bg-surface-950/60 backdrop-blur ' +
+        'drag genesis-titlebar relative z-20 flex h-11 shrink-0 items-center justify-between border-b border-black/70 bg-surface-950/60 backdrop-blur ' +
         (isMac ? 'pl-[80px] pr-4' : 'pl-4')
       }
     >
-      <span className="hazard-stripe pointer-events-none absolute inset-x-0 bottom-0 h-[3px] opacity-70" />
+      <span className="genesis-line pointer-events-none absolute inset-x-0 bottom-0 h-[3px] opacity-70" />
       <div className="flex items-center gap-2.5">
         {logo ? (
           <img src={logo} alt="" className="h-6 w-6 rounded object-contain" />

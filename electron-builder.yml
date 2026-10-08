@@ -1,6 +1,6 @@
-appId: com.toxitropia.launcher
-productName: Zarn
-copyright: Copyright © 2026 Zarn
+appId: com.mcgenesis.launcher
+productName: MCGenesis
+copyright: Copyright © 2026 MCGenesis
 
 directories:
   buildResources: build
@@ -28,7 +28,7 @@ nsis:
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
   createStartMenuShortcut: true
-  shortcutName: Zarn
+  shortcutName: MCGenesis
   deleteAppDataOnUninstall: false
 
 portable:
@@ -70,9 +70,5 @@ dmg:
       type: link
       path: /Applications
 
-# Auto-update : artefacts (Setup .exe + latest.yml) servis par le nginx de la VM.
-# Adapter l'URL vers un domaine public en production.
-publish:
-  provider: generic
-  url: http://82.67.63.61:8090/launcher
-  channel: latest
+# Aucun canal MCGenesis publié : ne pas récupérer les mises à jour Zarn.
+publish: null

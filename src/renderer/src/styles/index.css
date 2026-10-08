@@ -366,3 +366,47 @@ textarea {
   border-radius: inherit;
   box-shadow: inset 0 1px 0 0 rgba(157, 255, 46, 0.18), inset 0 0 22px -8px var(--rad-glow);
 }
+
+/* MCGenesis — floating city, crystal light and enchanted night. */
+:root { --accent: #36dfff; --accent-2: #a78bfa; --acid: #36dfff; --rad-glow: rgba(54,223,255,.3); --ember: #ffc978; }
+body { background: #080f20; color: #e6f1ff; }
+h1,h2,h3 { font-family: 'Inter','Segoe UI',sans-serif; letter-spacing: -.035em; }
+button:focus-visible { outline: 2px solid #36dfff; outline-offset: 4px; }
+.genesis-backdrop { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 90% 0%,#172c4f,transparent 65%),#080f20; }
+.genesis-titlebar { background: #080f20; border-color: #263953; }
+.genesis-line { background: linear-gradient(90deg,#36dfff, #a78bfa,transparent); }
+.genesis-sidebar { position: relative; background: rgba(9,18,35,.96); border-right: 1px solid #243349; padding: 24px 14px 16px; }
+.genesis-brand { display: flex; align-items: center; gap: 10px; margin: 0 8px 32px; }
+.genesis-brand img { width: 40px; height: 40px; }
+.genesis-brand strong { font-size: 19px; letter-spacing: -.6px; color: white; }
+.genesis-brand span { display: block; font-size: 8px; letter-spacing: 2px; color: #7894af; margin-top: 5px; }
+.genesis-nav-label { color: #7792ad; font-size: 9px; letter-spacing: 2px; margin: 0 14px 12px; }
+.genesis-nav { border-radius: 8px; margin-bottom: 2px; }
+.genesis-nav.bg-white\/10 { background: linear-gradient(90deg,rgba(54,223,255,.14),rgba(54,223,255,.03)); }
+.genesis-hero { min-height: 520px; border-bottom: 1px solid #263e57; }
+.genesis-hero-art { position: absolute; width: 66%; height: 100%; right: 0; top: 0; object-fit: cover; object-position: center 36%; }
+.genesis-hero > .pointer-events-none { background: linear-gradient(90deg,#0b162b 5%,rgba(11,22,43,.96) 26%,rgba(11,22,43,.65) 48%,rgba(11,22,43,.06) 78%),linear-gradient(0deg,#0b162b,transparent 30%); }
+.genesis-hero-content { min-height: 520px; padding-top: 48px; padding-bottom: 44px; }
+.genesis-hero-content > .flex-1 { max-width: 550px; }
+.genesis-eyebrow { font-size: 9px; color: #9cb6cf; letter-spacing: 2.3px; margin-bottom: 24px; }
+.genesis-heading { font-size: clamp(38px,4.5vw,65px); line-height: 1.07; margin-top: 8px; letter-spacing: -3px; }
+.genesis-heading em { font-style: normal; color: #63e8ff; }
+.genesis-hero-content p { max-width: 360px; line-height: 1.8; margin-top: 18px; }
+.genesis-avatar { position: absolute; right: 12px; bottom: 15px; pointer-events: none; }
+.genesis-discover { padding: 28px 32px; }
+.genesis-kicker { font-size: 9px; letter-spacing: 2px; color: #6dd8ea; }
+.genesis-discover h2 { margin: 8px 0 22px; font-size: 22px; font-weight: 700; color: white; }
+.genesis-features { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.genesis-features article { padding: 22px 18px; border: 1px solid #253b55; border-radius: 12px; background: linear-gradient(140deg,rgba(37,61,90,.4),rgba(16,29,48,.8)); }
+.genesis-features article:nth-child(2) { border-color: #4c3e6c; }
+.genesis-features article:nth-child(3) { border-color: #304e4c; }
+.genesis-features span { font-size: 9px; letter-spacing: 1.5px; color: #74d5ee; }
+.genesis-features h3 { font-size: 15px; font-weight: 700; margin: 16px 0 8px; color: #e6f1ff; }
+.genesis-features p { font-size: 12px; line-height: 1.7; color: #a0b4ca; }
+.genesis-features button { font-size: 11px; margin-top: 12px; color: #8beaff; text-align: left; }
+.card,.glass { background-color: rgba(17,31,55,.85); }
+.tex-stone::before,.tex-crack::before { opacity: .015; }
+@media(max-width:1000px) { .genesis-sidebar { width:190px; } .genesis-hero-art { width:75%; opacity:.7; } .genesis-avatar { display:none; } .genesis-features { grid-template-columns:1fr; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+
+.genesis-heading { font-size: clamp(34px,3.5vw,48px); letter-spacing: -2px; }

@@ -19,10 +19,9 @@ import { CrashModal } from '@/components/CrashModal'
 import { AchievementPopup } from '@/components/AchievementPopup'
 import { RadioPlayer } from '@/components/RadioPlayer'
 import { SeasonalEffects } from '@/components/SeasonalEffects'
-import { IntroVideo } from '@/components/IntroVideo'
+
 import { LoadingScreen } from '@/components/LoadingScreen'
-import { ApocOverlay } from '@/components/ApocOverlay'
-import { ApocBackground } from '@/components/ApocBackground'
+
 import { JavaHelpModal } from '@/components/JavaHelpModal'
 import { applySkin, DEFAULT_SKIN } from '@/lib/skins'
 
@@ -36,7 +35,7 @@ export default function App(): JSX.Element {
   const ready = useStore((s) => s.ready)
   const page = useStore((s) => s.page)
   const init = useStore((s) => s.init)
-  const branding = useStore((s) => s.app?.manifest?.branding)
+
   const toast = useStore((s) => s.toast)
   // Compte hors-ligne sans skin choisi → on lui attribue le skin par défaut (« pour les crack »).
   const offlineNeedsSkin = useStore((s) => {
@@ -55,13 +54,13 @@ export default function App(): JSX.Element {
   }, [ready, offlineNeedsSkin])
 
   useEffect(() => {
-    applyBranding(branding?.primaryColor, branding?.accentColor)
-  }, [branding?.primaryColor, branding?.accentColor])
+    applyBranding('#36dfff', '#a78bfa')
+  }, [])
 
   return (
-    <div className="flex h-screen w-screen flex-col overflow-hidden bg-surface-950/70 text-slate-200">
-      {/* Fond global animé apocalyptique (map Minecraft), sous tout le contenu */}
-      <ApocBackground />
+    <div className="genesis-app flex h-screen w-screen flex-col overflow-hidden bg-surface-950/70 text-slate-200">
+      {/* Ambiance MCGenesis */}
+      <div className="genesis-backdrop" aria-hidden="true" />
 
       <TitleBar />
 
@@ -107,16 +106,7 @@ export default function App(): JSX.Element {
       <RadioPlayer />
       <SeasonalEffects />
 
-      {/* Ambiance apocalypse tropicale : vignette radioactive, CRT, cendres, spores */}
-      <ApocOverlay />
-
-      {/* Voile post-apo : vignette + scanlines crasseuses */}
-      <div className="grit-overlay" />
-
-      {/* Intro vidéo (style survie apocalyptique) — jouée une fois par lancement */}
-      <IntroVideo />
-
-      {/* Écran de chargement style Garry's Mod + ambiance Metro 2033 (pendant le lancement) */}
+      {/* Progression du lancement */}
       <LoadingScreen />
 
       <AnimatePresence>

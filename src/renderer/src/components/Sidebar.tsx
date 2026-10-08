@@ -21,7 +21,7 @@ import { cn } from '@/lib/cn'
 import type { AccountProfile, SeasonalEffect } from '@shared/types'
 
 const NAV: { id: Page; label: string; icon: typeof Home }[] = [
-  { id: 'home', label: 'Accueil', icon: Home },
+  { id: 'home', label: 'L’aventure', icon: Home },
   { id: 'mods', label: 'Mods', icon: Package },
   { id: 'skins', label: 'Skins', icon: Shirt },
   { id: 'stats', label: 'Stats & succès', icon: BarChart3 },
@@ -62,8 +62,8 @@ export function Sidebar(): JSX.Element {
   }
 
   return (
-    <aside className="no-drag tex-crack flex w-[230px] shrink-0 flex-col border-r-2 border-black/60 bg-surface-950/40 p-3">
-      <nav className="flex flex-col gap-1">
+    <aside className="no-drag genesis-sidebar flex w-[230px] shrink-0 flex-col border-r-2 border-black/60 bg-surface-950/40 p-3">
+      <div className="genesis-brand"><img src={new URL('../assets/genesis-mark.svg', import.meta.url).href} alt="" /><div><strong>MCGenesis</strong><span>LE MONDE DES IA</span></div></div><div className="genesis-nav-label">TON AVENTURE</div><nav className="flex flex-col gap-1">
         {NAV.map(({ id, label, icon: Icon }) => {
           const activeNav = page === id
           return (
@@ -71,7 +71,7 @@ export function Sidebar(): JSX.Element {
               key={id}
               onClick={() => setPage(id)}
               className={cn(
-                'group relative flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all',
+                'genesis-nav group relative flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all',
                 activeNav
                   ? 'bg-white/10 text-white shadow-inner'
                   : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'

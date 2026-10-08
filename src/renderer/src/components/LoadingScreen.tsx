@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Volume2, VolumeX } from 'lucide-react'
 import { useStore } from '@/lib/store'
-import bgUrl from '@/assets/bg-apocalypse.png'
-import logoUrl from '@/assets/logo.png'
+import bgUrl from '@/assets/genesis-panorama.png'
+import logoUrl from '@/assets/genesis-mark.svg'
 
 // Écran de chargement « style Garry's Mod » : overlay plein écran pendant le lancement,
 // art apocalyptique + scanlines CRT, barre de progression par phase, tips qui défilent,
@@ -13,32 +13,19 @@ const PHASE_ORDER = [
   'checking', 'java', 'manifest', 'mods', 'assets', 'libraries', 'natives', 'forge', 'launching', 'running'
 ]
 const PHASE_LABEL: Record<string, string> = {
-  checking: 'Préparation du largage',
+  checking: 'Préparation de l’aventure',
   java: 'Vérification du moteur (Java)',
-  manifest: 'Lecture des ordres de mission',
+  manifest: 'Lecture de la configuration',
   mods: 'Téléchargement de l\'équipement',
   assets: 'Chargement des ressources',
   libraries: 'Assemblage des bibliothèques',
   natives: 'Composants natifs',
   forge: 'Initialisation de NeoForge',
-  launching: 'Mise à feu',
-  running: 'Largage en zone infectée…'
+  launching: 'Ouverture du portail',
+  running: 'Ton aventure commence…'
 }
 
-const TIPS = [
-  '☢ Bois régulièrement — la soif tue aussi vite que les infectés.',
-  '📡 Clic droit sur ta boussole pour ouvrir le menu de survie.',
-  '🔫 Achète tes armes à l\'Armurerie avec tes Pièces de Survie (/parme).',
-  '💰 Chaque infecté tué te rapporte des Pièces de Survie.',
-  '⛺ Pose une tente pour camper loin du spawn.',
-  '🎒 Ton « Sac du Survivant » s\'ouvre d\'un simple clic droit.',
-  '🛏 Un sac de couchage te laisse dormir n\'importe où.',
-  '🧟 La nuit, les hordes sortent chasser — fortifie ta base.',
-  '🗺 Touche M : carte plein écran · Touche U : point de repère.',
-  '⚔ Monte le Passe de Combat : des armes t\'attendent aux paliers.',
-  '☣ Les boss rapportent gros… si tu survis.',
-  '🛡 Revendique tes chunks (carte → claim) pour protéger ta base.'
-]
+const TIPS = ['Personnalise ton personnage depuis la page Skins.', 'Retrouve tes captures dans la Galerie.', 'Les paramètres te permettent d’ajuster la mémoire du jeu.', 'MCGenesis : joue avec les IA créées par Micka et bâtissez votre monde ensemble.']
 
 /**
  * Musique d'ambiance « Metro 2033 » entièrement SYNTHÉTISÉE en Web Audio (aucun fichier, 0 copyright) :
@@ -258,7 +245,7 @@ function startDrone(): { stop: () => void; setMuted: (m: boolean) => void } | nu
 export function LoadingScreen(): JSX.Element | null {
   const launching = useStore((s) => s.launching)
   const progress = useStore((s) => s.progress)
-  const appName = useStore((s) => s.app?.manifest?.branding.appName) ?? 'Zarn'
+  const appName = 'MCGenesis'
 
   const phase = progress?.phase ?? 'checking'
   // Visible pendant la préparation/lancement, masqué dès que le jeu tourne ou en cas d'erreur.

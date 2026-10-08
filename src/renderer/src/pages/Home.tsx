@@ -5,7 +5,7 @@ import { useStore } from '@/lib/store'
 import { pingServer, type ServerStatus, type RosterPlayer } from '@/lib/mcstatus'
 import { Badge, Spinner } from '@/components/ui'
 import { Play3DButton } from '@/components/Play3DButton'
-import { BackgroundScene } from '@/components/three/BackgroundScene'
+import genesisArt from '@/assets/genesis-panorama.png'
 import { PlayerAvatar } from '@/components/three/PlayerAvatar'
 import { cn } from '@/lib/cn'
 import { SKINS, DEFAULT_SKIN } from '@/lib/skins'
@@ -22,7 +22,6 @@ export function Home(): JSX.Element {
   const server = manifest?.server
   const account = app?.accounts.find((a) => a.id === app.activeAccountId) ?? null
   const hasAccount = !!account
-  const branding = manifest?.branding
   // Skin choisi (catalogue local) → affiché sur l'avatar Home pour les comptes hors-ligne (sync avec la page Skins).
   const skinId = app?.settings.skinId ?? DEFAULT_SKIN
   const localSkin =
@@ -46,27 +45,15 @@ export function Home(): JSX.Element {
   const pct = progress?.percent ?? (progress?.total ? (progress.current! / progress.total) * 100 : null)
 
   return (
-    <div className="relative h-full">
+    <div className="genesis-home relative h-full">
       {/* Hero */}
-      <div className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: manifest?.branding.backgroundUrl
-              ? `url(${manifest.branding.backgroundUrl})`
-              : 'radial-gradient(120% 120% at 50% 0%, rgba(143,192,38,0.16), transparent 55%), radial-gradient(90% 90% at 85% 6%, rgba(168,69,31,0.16), transparent 60%)'
-          }}
-        />
-        {/* Fond 3D animé : blocs Minecraft flottants + particules */}
-        <BackgroundScene
-          accent={branding?.primaryColor ?? '#8fc026'}
-          accent2={branding?.accentColor ?? '#c2e85a'}
-        />
+      <div className="genesis-hero relative overflow-hidden">
+        <img className="genesis-hero-art" src={genesisArt} alt="Cité flottante MCGenesis, portails lumineux et aventuriers" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-surface-950/30 via-surface-950/60 to-surface-950" />
 
-        <div className="relative flex items-stretch gap-6 px-8 pb-8 pt-12">
+        <div className="genesis-hero-content relative flex items-stretch gap-6 px-8 pb-8 pt-12">
           <div className="min-w-0 flex-1">
-            <Badge className="mb-4">
+            <div className="genesis-eyebrow">JOUEURS HUMAINS · JOUEURS IA · UN MÊME MONDE</div><Badge className="mb-4">
               {manifest?.minecraft.version ?? '—'} · {manifest?.minecraft.loader ?? 'vanilla'}
             </Badge>
             <div className="flex items-center gap-3">
@@ -77,13 +64,13 @@ export function Home(): JSX.Element {
                   className="h-12 w-12 rounded-lg border border-white/10 shadow"
                 />
               )}
-              <h1 className="text-4xl font-black tracking-tight text-white drop-shadow">
-                {server?.name ?? 'Mon Serveur'}
+              <h1 className="genesis-heading text-4xl font-black tracking-tight text-white drop-shadow">
+                <span>Joue avec les IA.</span><br /><em>Bâtissez ensemble.</em>
               </h1>
             </div>
             {/* MOTD du serveur (live si dispo, sinon slogan) — l'adresse IP n'est pas affichée */}
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-300">
-              {'☢ Le dernier archipel — survie apocalyptique tropicale'}
+              Entre dans le monde des IA créées par Micka. Joue à leurs côtés, construisez votre cité et partez à l’aventure ensemble. Dans MCGenesis, votre histoire se bâtit à plusieurs.
             </p>
 
             {/* Status row */}
@@ -148,7 +135,7 @@ export function Home(): JSX.Element {
               ) : (
                 <Play3DButton
                   onClick={() => (hasAccount ? play() : setLoginOpen(true))}
-                  label={hasAccount ? 'JOUER' : 'Se connecter'}
+                  label={hasAccount ? 'Jouer avec les IA' : 'Rejoindre leur monde'}
                 />
               )}
             </div>
@@ -156,7 +143,7 @@ export function Home(): JSX.Element {
 
           {/* Avatar 3D du joueur (seulement si connecté) */}
           {account && (
-            <div className="hidden shrink-0 items-end md:flex">
+            <div className="genesis-avatar hidden shrink-0 items-end md:flex">
               <PlayerAvatar
                 name={account.name}
                 uuid={account.uuid}
@@ -171,6 +158,7 @@ export function Home(): JSX.Element {
         </div>
       </div>
 
+      <div className="genesis-discover"><div><span className="genesis-kicker">L’UNIVERS MCGENESIS</span><h2>Leur monde. Vos rencontres. Une aventure commune.</h2></div><div className="genesis-features"><article><span>01 / JOUER ENSEMBLE</span><h3>Rencontre les IA de Micka</h3><p>Rejoins les joueurs IA créés par Micka et prends ta place à leurs côtés dans l’univers MCGenesis.</p></article><article><span>02 / BÂTIR ENSEMBLE</span><h3>Construisez votre monde</h3><p>D’une première maison à une cité au-dessus des nuages, donnez vie à vos idées et bâtissez ensemble.</p></article><article><span>03 / VIVRE L’AVENTURE</span><h3>Une histoire à partager</h3><p>Explore avec les IA, relève des défis à leurs côtés et fais de chaque rencontre le début d’une nouvelle aventure.</p><button onClick={() => useStore.getState().setPage('skins')}>Personnaliser mon personnage →</button></article></div></div>
       {/* News */}
       <div className="px-8 pb-10">
         <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-400">

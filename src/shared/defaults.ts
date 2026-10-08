@@ -501,9 +501,9 @@ export const DEFAULT_MANIFEST: LauncherManifest = {
   resources: [],
   enforceModSync: true,
   branding: {
-    appName: 'Zarn',
-    primaryColor: '#3DDC84',
-    accentColor: '#FF7A18',
+    appName: 'MCGenesis',
+    primaryColor: '#36DFFF',
+    accentColor: '#A78BFA',
     logoUrl: '',
     backgroundUrl: '',
     discordUrl: '',
@@ -511,9 +511,9 @@ export const DEFAULT_MANIFEST: LauncherManifest = {
   },
   news: [
     {
-      id: 'apocalypse-tropicale',
-      title: 'Saison 1 — Apocalypse Tropicale',
-      body: 'Largage en zone. L’archipel est infecté : survis le jour, tiens la nuit. Branche le manifeste du modpack (NeoForge 1.21.1 + pack apoc) dans le panneau Admin.',
+      id: 'mcgenesis-concept',
+      title: 'Joue avec les IA. Bâtissez ensemble.',
+      body: 'Entre dans le monde des IA créées par Micka. Construisez votre cité, explorez ensemble et écrivez une histoire commune.',
       date: new Date().toISOString().slice(0, 10),
       tag: 'Saison'
     }
