@@ -8,6 +8,7 @@ import type {
   PlayStats
 } from '@shared/types'
 import { DEFAULT_MANIFEST, defaultSettings, defaultStats } from '@shared/defaults'
+import { migrateBuiltInProfile } from '@shared/profileMigration'
 import { applyLaunch, applySessionEnd } from './services/stats'
 import { fetchManifest } from './services/manifest'
 import { readJson, writeJson, sha256 } from './util'
@@ -26,7 +27,8 @@ export function getStatePath(): string {
 export async function initStore(): Promise<void> {
   const userData = app.getPath('userData')
   statePath = join(userData, 'launcher-state.json')
-  const defaultGameDir = join(userData, 'minecraft')
+  const oldDefaultGameDir = join(userData, 'minecraft')
+  const defaultGameDir = join(userData, 'minecraft-mcgenesis')
   const loaded = await readJson<PersistedState>(statePath)
   if (loaded) {
     state = {
@@ -56,11 +58,11 @@ export async function initStore(): Promise<void> {
     state.manifest.server = { ...DEFAULT_MANIFEST.server }
   }
 
-  // Si aucune URL de manifeste n'est définie (ancienne install / état vide),
-  // on adopte celle par défaut pour que le modpack soit distribué automatiquement.
-  if (!state.settings.manifestUrl) {
-    state.settings.manifestUrl = defaultSettings(defaultGameDir).manifestUrl
-  }
+  const migrated = migrateBuiltInProfile(state.manifest, state.settings.manifestUrl,
+    state.settings.gameDir, oldDefaultGameDir, defaultGameDir)
+  state.manifest = migrated.manifest
+  state.settings.manifestUrl = migrated.manifestUrl
+  state.settings.gameDir = migrated.gameDir
 
   // Sync auto du manifeste au démarrage : le client a toujours le modpack serveur à jour
   // (NeoForge, mods, pack, serveur). Best-effort avec timeout pour ne pas bloquer si hors-ligne.
@@ -68,16 +70,8 @@ export async function initStore(): Promise<void> {
     try {
       state.manifest = await fetchManifest(state.settings.manifestUrl, AbortSignal.timeout(6000))
     } catch {
-      // Échec du fetch (serveur injoignable) : ne JAMAIS conserver un manifeste périmé
-      // qui ciblerait une autre version/loader/serveur (ex. ancien Spigot 1.12.2 → :25570) —
-      // sinon le launcher lancerait le mauvais client. On retombe sur le manifeste par défaut
-      // (NeoForge 1.21.1) si le cache est absent OU incompatible avec la cible courante.
-      const cached = state.manifest
-      const compatibleCache =
-        !!cached &&
-        cached.minecraft?.loader === DEFAULT_MANIFEST.minecraft.loader &&
-        cached.minecraft?.version === DEFAULT_MANIFEST.minecraft.version
-      if (!compatibleCache) state.manifest = { ...DEFAULT_MANIFEST }
+      // A custom remote profile remains usable offline. Built-in legacy
+      // migration already happened above; do not replace a custom modpack.
     }
   }
 

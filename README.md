@@ -1,7 +1,9 @@
 # Toxitropia Launcher
 
-Launcher officiel du serveur Minecraft **Toxitropia** (NeoForge 1.21.1) — Windows **et macOS**
-(Apple Silicon & Intel). Gère Java automatiquement, synchronise le modpack et lance le jeu.
+Launcher **MCGENESIS** (client vanilla 1.21.11 pour Paper 1.21.11) — Windows **et macOS**
+(Apple Silicon & Intel). Gère Java automatiquement et lance la connexion directe.
+Adresse intégrée : **82.67.63.61:25565** (IP publique du propriétaire).
+Voir [configuration et limites de connexion](docs/MCGENESIS_CONNECTION.md).
 
 ## 📥 Télécharger
 

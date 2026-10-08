@@ -118,13 +118,15 @@ export async function launchGame(ctx: LaunchContext): Promise<void> {
   // 3a. Pack de ressources + scripts KubeJS : écrits depuis les copies EMBARQUÉES dans le
   // launcher (plus de téléchargement :8090 qui échouait sur un sha1 périmé). Après la sync
   // (qui purgerait d'anciennes copies gérées), on (re)pose les bons fichiers.
-  await writeBundledResources(gameDir, log)
+  if (manifest.minecraft.loader === 'neoforge' && manifest.minecraft.version === '1.21.1') {
+    await writeBundledResources(gameDir, log)
+  }
 
   // 3b. Skin hors-ligne : on copie le skin choisi (userData/skin.png) dans le dossier
   // local de CustomSkinLoader (mod client-only du modpack) au nom du joueur. Mojang ne
   // peut pas servir le skin d'un compte hors-ligne → CSL le charge depuis ce fichier.
   // (Comptes Microsoft : on ne touche à rien, leur skin premium reste prioritaire.)
-  if (validAccount.type === 'offline') {
+  if (validAccount.type === 'offline' && manifest.minecraft.loader !== 'vanilla') {
     try {
       const src = join(app.getPath('userData'), 'skin.png')
       if (await fileExists(src)) {
