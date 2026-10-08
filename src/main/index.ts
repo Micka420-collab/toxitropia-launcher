@@ -76,7 +76,7 @@ function createWindow(): void {
 }
 
 app.whenReady().then(async () => {
-  electronApp.setAppUserModelId('com.toxitropia.launcher')
+  electronApp.setAppUserModelId('com.mcgenesis.launcher')
   app.on('browser-window-created', (_, window) => optimizer.watchWindowShortcuts(window))
 
   await initStore()

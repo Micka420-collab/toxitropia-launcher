@@ -1,4 +1,4 @@
-# Toxitropia Launcher
+# MCGENESIS Launcher
 
 Launcher **MCGENESIS** (client vanilla 1.21.11 pour Paper 1.21.11) — Windows **et macOS**
 (Apple Silicon & Intel). Gère Java automatiquement et lance la connexion directe.
@@ -11,11 +11,10 @@ Voir [configuration et limites de connexion](docs/MCGENESIS_CONNECTION.md).
 
 | Système | Fichier à télécharger |
 | --- | --- |
-| 🪟 **Windows** | `Zarn-Setup-*.exe` |
-| 🍎 **Mac Apple Silicon** (M1 / M2 / M3 / M4) | `Zarn-*-arm64.dmg` |
-| 🍎 **Mac Intel** | `Zarn-*-x64.dmg` |
+| 🪟 **Windows — MCGENESIS 1.5.22** | `MCGENESIS-Setup-1.5.22.exe` |
+| 🍎 **macOS — anciennes versions seulement** | Voir les releases précédentes ; elles utilisent l'ancien profil |
 
-**Windows** : lance le `Zarn-Setup-*.exe`. Si SmartScreen prévient → *Informations complémentaires*
+**Windows** : lance le `MCGENESIS-Setup-*.exe`. Si SmartScreen prévient → *Informations complémentaires*
 → *Exécuter quand même*.
 
 **macOS** :
@@ -32,9 +31,15 @@ Voir **[MAC-BUILD.md](MAC-BUILD.md)** pour les détails macOS. En résumé :
 
 ```bash
 npm ci
-npm run build:win   # Windows → dist/Zarn-Setup-<version>.exe
-npm run build:mac   # macOS (sur un Mac) → dist/Zarn-<version>-arm64.dmg + -x64.dmg + .zip
+npm run build:win   # Windows → dist/MCGENESIS-Setup-<version>.exe
+npm run build:mac   # macOS (sur un Mac) → dist/MCGENESIS-<version>-arm64.dmg + -x64.dmg + .zip
 ```
 
 Les versions Windows **et** macOS sont aussi construites automatiquement par GitHub Actions
 (`.github/workflows/build.yml`) à chaque tag `launcher-v*`, puis publiées en Release.
+
+La release Windows MCGENESIS est construite, installée et démarrée sur un
+runner Windows par `windows-release.yml`, depuis la branche
+`release/mcgenesis-<version>`. Elle publie l'installeur et son SHA256 après
+réussite des contrôles. Le visuel `mcgenesis.png` correspond exactement à
+l'image fournie (SHA256 `5fa9ab0aea299bd4d6be8b4445aa7716fe6b86ef4d6c5e2c4bb465956fb8c0aa`).

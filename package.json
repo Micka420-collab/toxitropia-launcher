@@ -1,7 +1,7 @@
 {
-  "name": "toxitropia-launcher",
-  "version": "1.5.21",
-  "description": "MCGenesis — Cité flottante : launcher NeoForge 1.21.1",
+  "name": "mcgenesis-launcher",
+  "version": "1.5.22",
+  "description": "MCGENESIS — Joue avec des joueurs IA : launcher vanilla 1.21.11",
   "main": "./out/main/index.js",
   "author": "Zarn",
   "license": "MIT",

@@ -1,6 +1,6 @@
 appId: com.mcgenesis.launcher
-productName: MCGenesis
-copyright: Copyright © 2026 MCGenesis
+productName: MCGENESIS
+copyright: Copyright © 2026 MCGENESIS
 
 directories:
   buildResources: build
@@ -29,7 +29,7 @@ nsis:
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
   createStartMenuShortcut: true
-  shortcutName: MCGenesis
+  shortcutName: MCGENESIS
   deleteAppDataOnUninstall: false
 
 portable:
