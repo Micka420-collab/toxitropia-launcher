@@ -1,0 +1,104 @@
+name: MCGENESIS Windows release
+
+on:
+  push:
+    branches: ['release/mcgenesis-*']
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Check release branch and package version
+        shell: pwsh
+        run: |
+          $package = Get-Content package.json -Raw | ConvertFrom-Json
+          if ($env:GITHUB_REF_NAME -ne "release/mcgenesis-$($package.version)") { throw 'Release branch/version mismatch' }
+          "RELEASE_VERSION=$($package.version)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Install pinned Electron runtime
+        run: node node_modules/electron/install.js
+      - run: npm test
+      - run: npm run typecheck
+      - name: Build Windows NSIS installer
+        run: npm run build:win -- --publish never
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - name: Verify, install and start actual Windows binary
+        shell: pwsh
+        run: |
+          $installer = Join-Path $PWD "dist/MCGENESIS-Setup-$env:RELEASE_VERSION.exe"
+          if (!(Test-Path $installer)) { throw 'Installer missing' }
+          if ((Get-Item $installer).Length -lt 1000000) { throw 'Installer unexpectedly small' }
+          $installDir = Join-Path $env:RUNNER_TEMP 'MCGENESIS-install-test'
+          $install = Start-Process -FilePath $installer -ArgumentList @('/S', "/D=$installDir") -Wait -PassThru
+          if ($install.ExitCode -ne 0) { throw "NSIS installation failed: $($install.ExitCode)" }
+          $app = Join-Path $installDir 'MCGENESIS.exe'
+          if (!(Test-Path $app)) { throw 'Installed executable missing' }
+          $process = Start-Process -FilePath $app -ArgumentList '--disable-gpu' -PassThru
+          try {
+            Start-Sleep -Seconds 5
+            $process.Refresh()
+            if ($process.HasExited) { throw "Application exited during startup: $($process.ExitCode)" }
+            "Installed executable started successfully; product=$((Get-Item $app).VersionInfo.ProductName)"
+          } finally {
+            if (!$process.HasExited) { taskkill /PID $process.Id /T /F }
+          }
+          Get-ChildItem dist -Filter '*.exe' | ForEach-Object {
+            $hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+            "$hash  $($_.Name)"
+          } | Set-Content dist/SHA256SUMS.txt -Encoding ascii
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MCGENESIS-Windows
+          if-no-files-found: error
+          path: |
+            dist/MCGENESIS-Setup-*.exe
+            dist/SHA256SUMS.txt
+
+  publish:
+    needs: windows
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: MCGENESIS-Windows
+          path: artifacts
+      - name: Read version
+        run: echo "RELEASE_VERSION=$(node -p 'require("./package.json").version')" >> "$GITHUB_ENV"
+      - name: Publish requested Windows release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: launcher-v${{ env.RELEASE_VERSION }}
+          target_commitish: ${{ github.sha }}
+          name: MCGENESIS ${{ env.RELEASE_VERSION }} — Windows
+          make_latest: true
+          fail_on_unmatched_files: true
+          body: |
+            Nouveau launcher **MCGENESIS**, avec le visuel officiel fourni par le propriétaire.
+
+            **Windows 64 bits** : télécharger `MCGENESIS-Setup-${{ env.RELEASE_VERSION }}.exe`.
+            Client **vanilla 1.21.11**, Java 21 téléchargé automatiquement.
+            Adresse intégrée : **82.67.63.61:25565**, modifiable dans Administration.
+
+            Le code, les tests et le build sont vérifiés ; l'installeur est installé puis démarré sur Windows dans la CI.
+            L'authentification Microsoft et une session Minecraft graphique ne sont pas testées par cette CI.
+            Le serveur actuel reste privé pour les essais IA : cette release ne modifie pas le pare-feu ni la redirection NAT.
+            Les anciennes données ne sont pas supprimées. Les mises à jour automatiques restent désactivées.
+            Binaire non signé ; Windows peut afficher une alerte SmartScreen.
+            `SHA256SUMS.txt` permet de vérifier le téléchargement.
+          files: |
+            artifacts/MCGENESIS-Setup-*.exe
+            artifacts/SHA256SUMS.txt
